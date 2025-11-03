@@ -1,0 +1,153 @@
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+
+body {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #3e2fa3, #6a5cf5);
+  color: #e2e2ff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.header {
+  background-color: rgba(80, 50, 212, 0.9);
+  width: 100%;
+  padding: 20px 40px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: #fff;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+}
+
+.header-logo {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.logo img {
+  width: 30px;
+  filter: brightness(0) invert(1);
+}
+
+.header-logo span {
+  font-size: 1.6rem;
+  font-weight: bold;
+}
+
+.container {
+  width: 90%;
+  max-width: 1100px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  margin: 40px auto;
+  gap: 40px;
+}
+
+.text-section {
+  max-width: 480px;
+}
+
+.text-section h1 {
+  font-size: 2.4rem;
+  font-weight: 700;
+  margin-bottom: 15px;
+  color: #fff;
+}
+
+.text-section p {
+  font-size: 1.1rem;
+  margin-bottom: 20px;
+  line-height: 1.6;
+  color: #ffffff;
+}
+
+button {
+  background: rgba(255,255,255,0.2);
+  padding: 14px 25px;
+  border-radius: 12px;
+  border: 1px solid rgba(255,255,255,0.4);
+  color: white;
+  cursor: pointer;
+  margin-top: 15px;
+  font-size: 16px;
+  backdrop-filter: blur(5px);
+  transition: 0.3s ease;
+}
+
+button:hover {
+  background: rgba(255,255,255,0.35);
+  transform: translateY(-2px);
+}
+
+.chat-mock {
+  width: 340px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 20px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+}
+
+.chat-bubble {
+  border-radius: 12px;
+  padding: 10px 14px;
+  font-size: 0.95rem;
+  max-width: 85%;
+}
+
+.chat-bubble img {
+  width: 30px;
+  filter: brightness(0) invert(1);
+}
+
+.chat-bubble.user {
+  align-self: flex-end;
+  background: rgba(255, 255, 255, 0.3);
+  color: #333;
+}
+
+.chat-bubble.bot {
+  align-self: flex-start;
+  background: rgba(255, 255, 255, 0.2);
+  color: #fff;
+}
+
+.input-box {
+  margin-top: 15px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.input-box input {
+  flex: 1;
+  padding: 12px;
+  border-radius: 10px;
+  border: none;
+  outline: none;
+  font-size: 0.9rem;
+  color: #333;
+}
+
+.input-box input::placeholder {
+  color: #666;
+}
+
+.user {
+  height : 50px;
+  width: 50px;
+  top:0;
+  position: static;
+}
