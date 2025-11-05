@@ -1,24 +1,25 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-<head>
+  <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Central do Estagiário</title>
     <link rel="stylesheet" href="estagio.css">
-</head>
-<body>
+  </head>
 
-<canvas id="canvas"></canvas>
+  <body>
 
-<header class="header">
+  <canvas id="canvas"></canvas>
+
+  <header class="header">
     <div class="header-logo">
         <div class="logo-icon"></div>
         <img src="/imagens/chatbot.png" alt="chatbot">
-        <span>ChatBot</span>
+        <span>ENNIE</span>
     </div>
-</header>
+  </header>
 
-<section class="container">
+  <section class="container">
 
     <div class="text-section">
         <h1>Central de ajuda do estagiário</h1>
@@ -26,7 +27,7 @@
         <p>Vamos te guiar e tirar todas as suas dúvidas sobre o estágio. 
         Fale com a nossa assistente pelo ícone no canto da tela.</p>
 
-        <button class="btn-start">Iniciar atendimento</button>
+        
     </div>
 
     <div class="chat-mock">
@@ -39,9 +40,9 @@
         </div>
     </div>
 
-</section>
+  </section>
 
-<footer class="footer">
+  <footer class="footer">
     <div class="footer-content">
         <div class="footer-item">
             <img src="/imagens/tel.png" alt="whatsapp">
@@ -53,7 +54,7 @@
             <a href="https://www.instagram.com/eniac.oficial?igsh=MXFvbjdpNTc4azlqNA==" target="_blank">@eniac.oficial</a>
         </div>
     </div>
-</footer>
+  </footer>
 
 <script>
 const canvas = document.getElementById("canvas");
@@ -61,7 +62,7 @@ const ctx = canvas.getContext("2d");
 canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
 
-const starCount = 35;
+const starCount = 100;
 let stars = [];
 
 function createStar() {
@@ -69,7 +70,7 @@ function createStar() {
     x: Math.random() * canvas.width,
     y: Math.random() * canvas.height,
     size: Math.random() * 1.7 + 0.6, 
-    speed: Math.random() * 0.25 + 0.05,
+    speed: Math.random() * 1 + 0.05,
     opacity: Math.random() * 0.35 + 0.15, 
     blur: Math.random() * 4 + 2 
   };
@@ -116,6 +117,24 @@ window.addEventListener("resize", () => {
 });
 </script>
 
+<body>
 
+    <button class="chatbot-toggler" id="chatbot-toggler">
+        💬
+    </button>
+
+    <div class="chatbot" id="chatbot-window">
+        <div class="chat-header">
+            Fale com a ENNIE
+        </div>
+        <div class="chat-body">
+            <p>Olá! Como posso te ajudar hoje?</p>
+        </div>
+        <div class="chat-input">
+            <input type="text" placeholder="Digite sua mensagem...">
+        </div>
+    </div>
+
+<script src="/script.js"></script>
 </body>
 </html>
