@@ -1,0 +1,383 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+
+body {
+  min-height: 100vh;
+  background: linear-gradient(180deg, #3e2fa3, #6a5cf5);
+  color: #e2e2ff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  /* Removemos a duplicata de 'body' que estava no fim do seu arquivo */
+}
+
+.header {
+  background-color: solid rgba(80, 50, 212, 0.9);
+  backdrop-filter: blur(5px);
+  width: 100%;
+  padding: 20px 40px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: #fff;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+}
+
+.header-logo {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* Corrigi o seletor da imagem do logo */
+.header-logo img {
+  width: 30px;
+  /* filter: brightness(0) invert(1); <- Não precisa, a img já é branca */
+}
+
+.header-logo span {
+  font-size: 1.6rem;
+  font-weight: bold;
+}
+
+.container {
+  width: 90%;
+  max-width: 1100px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  margin: 40px auto;
+  gap: 40px;
+}
+
+.text-section {
+  max-width: 480px;
+  margin-left: 40px;
+}
+
+.text-section h1 {
+  font-size: 2.8rem;
+  font-weight: 700;
+  margin-bottom: 15px;
+  color: #fff;
+}
+
+.text-section p {
+  font-size: 1.25rem;
+  margin-bottom: 20px;
+  line-height: 1.6;
+  color: #ffffff;
+}
+
+/* Estilo de botão genérico (não usado pelo chat) */
+button { 
+  background: rgba(80, 50, 212, 0.9);
+  padding: 10px 25px;
+  border-radius: 12px;
+  border: 1px solid rgba(255,255,255,0.4);
+  color: rgba(255, 255, 255, 0.9);
+  cursor: pointer;
+  margin-top: 15px;
+  font-size: 16px;
+  backdrop-filter: blur(5px);
+  transition: 0.3s ease;
+}
+
+button:hover {
+  background: rgb(80, 50, 212);
+  transform: translateY(-2px);
+}
+
+/* --- CHAT MOCKUP (A IMAGEM DE EXEMPLO) --- */
+/* Você pode manter isso, não afeta o chat real */
+.chat-mock {
+  width: 340px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 20px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+}
+
+.chat-bubble {
+  border-radius: 12px;
+  padding: 10px 14px;
+  font-size: 0.95rem;
+  max-width: 85%;
+}
+.chat-bubble.bot {
+  align-self: flex-start;
+  background: rgba(255, 255, 255, 0.2);
+  color: #fff;
+}
+.chat-mock .user { /* Seletor mais específico para o mockup */
+  height : 42px;
+  width: 45px;
+  top:0;
+  position: static;
+}
+.input-box {
+  margin-top: 15px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.input-box input {
+  flex: 1;
+  padding: 12px;
+  border-radius: 10px;
+  border: none;
+  outline: none;
+  font-size: 0.9rem;
+  color: #333;
+}
+.input-box input::placeholder {
+  color: #666;
+}
+/* Fim do Chat Mockup */
+
+
+.footer {
+  width: 100%;
+  background: rgba(0, 0, 0, 0.25);
+  backdrop-filter: blur(5px);
+  color: #fff;
+  padding: 20px;
+  margin-top: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.footer-content {
+  display: flex;
+  gap: 30px;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+}
+
+.footer-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 1rem;
+}
+
+.footer-item img {
+  width: 22px;
+  height: 22px;
+}
+
+.footer-item a {
+  color: #fff;
+  text-decoration: none;
+}
+
+.footer-item a:hover {
+  opacity: 0.8;
+}
+
+#canvas {
+  position: fixed;
+  inset: 0;
+  width: 100vw; /* Ajustado para 100vw */
+  height: 100vh; /* Ajustado para 100vh */
+  z-index: -1;
+  pointer-events: none;
+}
+
+
+/* --- ⬇️ ESTILOS DO CHATBOT FUNCIONAL ⬇️ --- */
+
+/* 1. Estilo do Botão Flutuante */
+.chatbot-toggler {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  height: 60px;
+  width: 60px;
+  background: linear-gradient(180deg, #3e2fa3, #6a5cf5);
+  color: white;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s ease;
+  z-index: 1000;
+  /* Removemos o 'transform' do 'button:hover' genérico */
+  transform: none; 
+}
+
+.chatbot-toggler:hover {
+  transform: scale(1.1); /* Efeito hover específico */
+}
+
+/* 2. Estilo da Janela do Chatbot */
+.chatbot {
+  position: fixed;
+  bottom: 100px;
+  right: 30px;
+  width: 350px;
+  height: 450px;
+  background: white;
+  border-radius: 10px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+  display: none; /* Começa escondido (o JS muda para 'flex') */
+  flex-direction: column;
+  overflow: hidden;
+  z-index: 999;
+}
+
+.chat-header {
+  background: #6a5cf5;
+  color: white;
+  padding: 15px;
+  text-align: center;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.chat-body {
+  flex-grow: 1;
+  padding: 15px;
+  overflow-y: auto;
+  background: #f0f4f8; /* Fundo do chat um pouco diferente */
+  display: flex;
+  flex-direction: column; /* Para mensagens empilharem */
+}
+
+/* --- 3. ESTILIZAÇÃO DAS MENSAGENS (NOVO) --- */
+/* Estilos base para CADA mensagem (o <p> que o JS cria) */
+.chat-body p {
+  padding: 10px 14px;
+  border-radius: 18px;
+  margin-bottom: 10px;
+  max-width: 80%;
+  word-wrap: break-word; /* Garante quebra de linha */
+  line-height: 1.4;
+  width: fit-content; /* Faz a 'caixa' ter o tamanho do texto */
+}
+
+/* Mensagem do Bot (ENNIE) */
+.chat-body p.bot {
+  background: #e5e5ea; /* Cor neutra para o bot */
+  color: #333;
+  margin-right: auto; /* Alinha à esquerda */
+  text-align: left;
+}
+
+/* Mensagem do Usuário */
+.chat-body p.user {
+  background: #6a5cf5; /* Cor principal do tema */
+  color: white;
+  margin-left: auto; /* Alinha à direita */
+  text-align: right;
+  font-weight: 500;
+}
+
+
+/* --- 4. ESTILIZAÇÃO DO INPUT (AJUSTADO) --- */
+.chat-input {
+  padding: 10px;
+  border-top: 1px solid #ddd;
+  background: #ffffff;
+  /* Ajustes para alinhar input e botão */
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.chat-input .inputMessage {
+  border: 1px solid #ccc;
+  padding: 10px;
+  flex-grow: 1; /* Faz o input ocupar o espaço disponível */
+  border-radius: 20px;
+  margin-right: 0; /* 'gap' cuida do espaçamento */
+  outline: none;
+  font-size: 0.95rem;
+  color: #333;
+}
+
+.chat-input .enviarMensagem {
+  background: #6a5cf5;
+  border: none;
+  color: white;
+  padding: 0 15px;
+  height: 42px; /* Altura fixa para alinhar com input */
+  border-radius: 20px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: background 0.2s ease;
+  /* Reseta estilos do 'button' genérico */
+  margin-top: 0;
+  backdrop-filter: none;
+}
+
+.chat-input .enviarMensagem:hover {
+  background: #3e2fa3;
+  transform: none; /* Reseta o 'translateY' do 'button:hover' */
+}
+
+
+/* --- RESPONSIVIDADE (Seu código original) --- */
+@media (max-width: 800px) {
+  .container {
+    flex-direction: column;
+    text-align: center;
+    gap: 30px;
+  }
+
+  .text-section {
+    margin-left: 0;
+    max-width: 600px;
+  }
+
+  .text-section h1 {
+    font-size: 2.2rem;
+  }
+
+  .text-section p {
+    font-size: 1.1rem;
+  }
+
+  .chat-mock {
+    width: 90%;
+    max-width: 420px;
+  }
+}
+
+@media (max-width: 500px) {
+  .text-section h1 {
+    font-size: 1.9rem;
+  }
+
+  .text-section p {
+    font-size: 1rem;
+  }
+
+  button {
+    width: 100%;
+  }
+
+  /* Ajusta o chat para telas pequenas */
+  .chatbot {
+    width: 90vw;
+    height: 70vh;
+    right: 5vw;
+    bottom: 100px;
+  }
+}

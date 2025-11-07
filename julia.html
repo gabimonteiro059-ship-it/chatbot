@@ -4,7 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Central do Estagiário</title>
-    <link rel="stylesheet" href="estagio.css">
+    <link rel="stylesheet" href="css/estagio.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script src="/socket.io/socket.io.js"></script>
   </head>
 
   <body>
@@ -14,7 +16,7 @@
   <header class="header">
     <div class="header-logo">
         <div class="logo-icon"></div>
-        <img src="/imagens/chatbot.png" alt="chatbot">
+        <img src="/imgs/chatbot.png" alt="chatbot">
         <span>ENNIE</span>
     </div>
   </header>
@@ -31,12 +33,13 @@
     </div>
 
     <div class="chat-mock">
-        <img src="/imagens/chatbot.png" alt="Perfil" class="user"> 
+        <img src="/imgs/chatbot.png" alt="Perfil" class="user"> 
         <div class="chat-bubble bot">
             Olá! Como podemos ajudar?
         </div>
         <div class="input-box">
             <input type="text" placeholder="Digite sua mensagem">
+            
         </div>
     </div>
 
@@ -45,12 +48,12 @@
   <footer class="footer">
     <div class="footer-content">
         <div class="footer-item">
-            <img src="/imagens/tel.png" alt="whatsapp">
+            <img src="/imgs/tel.png" alt="whatsapp">
             <span>(11) 90000-0000</span>
         </div>
 
         <div class="footer-item">
-            <img src="/imagens/insta.png" alt="instagram">
+            <img src="/imgs/insta.png" alt="instagram">
             <a href="https://www.instagram.com/eniac.oficial?igsh=MXFvbjdpNTc4azlqNA==" target="_blank">@eniac.oficial</a>
         </div>
     </div>
@@ -117,10 +120,8 @@ window.addEventListener("resize", () => {
 });
 </script>
 
-<body>
-
     <button class="chatbot-toggler" id="chatbot-toggler">
-        💬
+        <i class="fa-solid fa-robot"></i>
     </button>
 
     <div class="chatbot" id="chatbot-window">
@@ -131,10 +132,11 @@ window.addEventListener("resize", () => {
             <p>Olá! Como posso te ajudar hoje?</p>
         </div>
         <div class="chat-input">
-            <input type="text" placeholder="Digite sua mensagem...">
-        </div>
+          <input type="text" placeholder="Digite sua mensagem..." class="inputMessage">
+          <button class="enviarMensagem">Enviar</button>
+          </div>
     </div>
 
-<script src="/script.js"></script>
+<script src="js/script.js"></script>
 </body>
 </html>
